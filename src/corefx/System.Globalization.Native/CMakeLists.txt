@@ -77,6 +77,7 @@ set_target_properties(System.Globalization.Native_Static PROPERTIES OUTPUT_NAME 
 
 # Disable the "lib" prefix.
 set_target_properties(System.Globalization.Native PROPERTIES PREFIX "")
+set_target_properties(System.Globalization.Native_Static PROPERTIES PREFIX "")
 
 if (FEATURE_FIXED_ICU_VERSION)
     add_definitions(-DFEATURE_FIXED_ICU_VERSION)
@@ -102,6 +103,9 @@ if(NOT CLR_CMAKE_PLATFORM_DARWIN)
     endif()
 else()
     target_link_libraries(System.Globalization.Native
+        ${ICUCORE}
+    )
+    target_link_libraries(System.Globalization.Native_Static
         ${ICUCORE}
     )
 
